@@ -19,19 +19,19 @@ const store = configureStore();
 
 
  
-store.subscribe(()=> {
-    const state = store.getState();
-    const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
-    console.log("Inside Subscribe");
-    console.log(visibleExpenses);
+// store.subscribe(()=> {
+//     const state = store.getState();
+//     const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
+//     console.log("Inside Subscribe");
+//     console.log(visibleExpenses);
     
-});
+// });
 
 const now = moment().valueOf();
 
-const expenseOne = store.dispatch(addExpense({desc:'Water Bill', amount:4500, createdAt: now }));
-const expenseTwo = store.dispatch(addExpense({desc:'Gas Bill', amount:100, createdAt: now}));
-const expenseThree = store.dispatch(addExpense({desc:'Juice', amount:104000, createdAt: now}));
+// const expenseOne = store.dispatch(addExpense({desc:'Water Bill', amount:4500, createdAt: now }));
+// const expenseTwo = store.dispatch(addExpense({desc:'Gas Bill', amount:100, createdAt: now}));
+// const expenseThree = store.dispatch(addExpense({desc:'Juice', amount:104000, createdAt: now}));
 
 store.dispatch(setTextFilter('water'));
 
@@ -43,7 +43,7 @@ setTimeout(() => {
     store.dispatch(setTextFilter(''));
 }, 2000);
 
-console.log(store.getState());
+
 
 const jsx = (
     <Provider store={store} >
