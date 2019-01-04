@@ -13,17 +13,50 @@ import * as firebase from 'firebase';
   firebase.initializeApp(config);
 
   const db = firebase.database();
+
+
+
+//   db.ref('/isSingleq/cc')
+//   .remove().then(() => {
+//     console.log("Remove succeeded.");
+//   }).catch ((e) => {
+//       console.log(e);
+//   })
+
+
   db.ref().set({
       name: 'Boss',
       age: 25,
+      stressLevel: 6,
+      job: {
+          title: 'SSE',
+          company: 'Google'
+      },
       location : {
           city: 'Blr',
           state: 'KA'
       },
       isSingle: true
+  }).then(() => {
+      console.log('Data is saved in firebase !!');
+  }).catch((e) => {
+      console.log(e);
   });
 
-  db.ref('age').set(30);
-  db.ref('location/city').set("Bengaluru");
-  db.ref('attr/weight').set(3.01);
-  db.ref('attr/height').set(2.01);
+    /// Update
+
+    db.ref().update({
+        stressLevel: 9,
+        'location/city': 'Hyd',
+        'job/company': 'Amazon'
+    })
+
+
+//   db.ref('age').set(30);
+//   db.ref('location/city').set("Bengaluru");
+//   db.ref('attr/weight').set(3.01);
+//   db.ref('attr/height').set(2.01).then(() => {
+//       console.log('Call worked !')
+//   }).catch((e)=> {
+//       console.log(e);
+//   })
