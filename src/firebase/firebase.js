@@ -4,16 +4,18 @@ import expenses from '../selectors/expenses';
 
   // Initialize Firebase
   const config = {
-    apiKey: "AIzaSyDLqlgzAnl3Kpbn3aS8X13tHbqrpL5MwnM",
-    authDomain: "expensify-e9dcc.firebaseapp.com",
-    databaseURL: "https://expensify-e9dcc.firebaseio.com",
-    projectId: "expensify-e9dcc",
-    storageBucket: "expensify-e9dcc.appspot.com",
-    messagingSenderId: "287991151276"
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+    databaseURL: process.env.FIREBASE_DATABASE_URL,
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID
   };
   firebase.initializeApp(config);
 
   const db = firebase.database();
+
+  export { firebase, db as default };
 
 
 
@@ -86,17 +88,17 @@ import expenses from '../selectors/expenses';
   // })
 
 
-  db.ref('expenses').on('child_removed', (snapshot) => {
-    console.log('child_remomve', snapshot.val())
-})
+//   db.ref('expenses').on('child_removed', (snapshot) => {
+//     console.log('child_remomve', snapshot.val())
+// })
 
-db.ref('expenses').on('child_changed', (snapshot) => {
-  console.log('child_remomve', snapshot.val())
-})
+// db.ref('expenses').on('child_changed', (snapshot) => {
+//   console.log('child_remomve', snapshot.val())
+// })
 
-db.ref('expenses').on('child_added', (snapshot) => {
-  console.log('child_remomve', snapshot.val())
-})
+// db.ref('expenses').on('child_added', (snapshot) => {
+//   console.log('child_remomve', snapshot.val())
+// })
 
 // /// Fire on value change, convert to Array list 
 //   db.ref('expenses').on('value', (snapshot) => {
