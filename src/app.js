@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
-import { addExpense } from './actions/expenses';
+import { startSetExpenses } from './actions/expenses';
 import { setTextFilter } from './actions/filters';
 import getVisibleExpenses from './selectors/expenses';
 import moment from 'moment';
@@ -36,15 +36,15 @@ const now = moment().valueOf();
 // const expenseTwo = store.dispatch(addExpense({desc:'Gas Bill', amount:100, createdAt: now}));
 // const expenseThree = store.dispatch(addExpense({desc:'Juice', amount:104000, createdAt: now}));
 
-store.dispatch(setTextFilter('water'));
+// store.dispatch(setTextFilter('water'));
 
-setTimeout(() => {
-    store.dispatch(setTextFilter('bil'));
-}, 1000);
+// setTimeout(() => {
+//     store.dispatch(setTextFilter('bil'));
+// }, 1000);
 
-setTimeout(() => {
-    store.dispatch(setTextFilter(''));
-}, 2000);
+// setTimeout(() => {
+//     store.dispatch(setTextFilter(''));
+// }, 2000);
 
 
 
@@ -54,4 +54,10 @@ const jsx = (
     </Provider>
 );
 
-ReactDOM.render(jsx, document.getElementById('app')); 
+ReactDOM.render(<p>Loading ....</p>, document.getElementById('app')); 
+
+store.dispatch(startSetExpenses()).then(() => {
+    ReactDOM.render(jsx, document.getElementById('app')); 
+})
+
+

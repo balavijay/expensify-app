@@ -36,10 +36,39 @@ expense:{
 }
 });
 
-// Edit Expense
+// EDIT_EXPENSE
 export const editExpense = (id, updates) => ({
 type: 'EDIT_EXPENSE', 
 id,
 updates
 
 });
+
+// SET_EXPENSE
+export const setExpenses = (expenses) => ({
+    type: 'SET_EXPENSE',
+    expenses
+});
+
+
+export const startSetExpenses = () => {
+
+    return (dispatch) => {
+        return db.ref('expenses').once('value')
+        .then((snapshot) => {
+            const expenses = [];
+
+            snapshot.forEach((expense) => {
+                console.log(expense);
+                expenses.push({
+                    id: expense.key,
+                    ...expense.val()
+                });
+            });
+
+            dispatch(setExpenses(expenses));
+
+        })
+    }
+
+}
