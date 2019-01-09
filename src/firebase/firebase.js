@@ -1,5 +1,4 @@
 import * as firebase from 'firebase';
-import expenses from '../selectors/expenses';
 
 
   // Initialize Firebase
@@ -11,11 +10,13 @@ import expenses from '../selectors/expenses';
     storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
     messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID
   };
+
   firebase.initializeApp(config);
 
   const db = firebase.database();
-
-  export { firebase, db as default };
+  const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+  
+  export { firebase, googleAuthProvider, db as default };
 
 
 
