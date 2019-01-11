@@ -55,7 +55,7 @@ class ExpenseForm extends React.Component {
     onSubmit = (e) => {
         e.preventDefault();
         if(!this.state.desc || !this.state.amount){
-            this.setState(()=>({error: 'Please provide description n/or amout'}));
+            this.setState(()=>({error: 'Please provide description and/or amount'}));
         }
         else {
             console.log('Submit it ');
@@ -72,13 +72,14 @@ class ExpenseForm extends React.Component {
 
     render() {
         return (
-            <div>
-               {this.state.error && <p> {this.state.error} </p> } 
-                <form onSubmit={this.onSubmit }>
-                    <input type="text" placeholder="Enter Descrpition  "
+                <form onSubmit={this.onSubmit } className="form ">
+                {this.state.error && <p className="form__error"> {this.state.error} </p> } 
+                    <input type="text" placeholder="Enter Description  "
+                    className="text-input"
                     autoFocus="" value={this.state.desc} onChange={this.onDescChange} />
 
-                    <input type="text" placeholder="Amount " value={this.state.amount} onChange={this.onAmountChange}  />
+                    <input type="text" placeholder="Amount " className="text-input" 
+                        value={this.state.amount} onChange={this.onAmountChange}  />
 
                     <SingleDatePicker 
                         date={this.state.createdAt}
@@ -89,11 +90,12 @@ class ExpenseForm extends React.Component {
                         isOutsideRange={()=> false }
                     />
 
-                    <textarea placeholder="Add a note" value={this.state.note} onChange={this.onNoteChange}></textarea>
-
-                    <button>Add Expense</button>
+                    <textarea className="textarea" placeholder="Add a note (optional) " value={this.state.note} onChange={this.onNoteChange}></textarea>
+                    <div>
+                        <button className="button">Save Expense</button>
+                    </div>
                 </form>
-            </div>
+   
         )
     }
 }
