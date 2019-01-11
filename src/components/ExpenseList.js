@@ -10,7 +10,7 @@ const ExpenseList = (props) => (
             <div className="show-for-desktop">Expense</div>
             <div className="show-for-desktop">Amount</div>
         </div>
-
+        <div  className="list-body">
         {
             props.expenses.length === 0 ?  (<div className="list-item list-item__message">No expenses</div>) : (
                 props.expenses.map((expense, index) => {
@@ -19,7 +19,7 @@ const ExpenseList = (props) => (
             )
         }
         
-        {};
+        </div>
     
     </div>
 );
